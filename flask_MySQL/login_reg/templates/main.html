@@ -1,0 +1,19 @@
+<html>
+<h1>Saved list of drinks</h1>
+
+
+<h1>Hello {{user}}</h1>
+<form action="/login" method='post'>
+  Email: <input type="text" name="email">
+  <!-- make type change to password for production. -->
+  Password:<input type="text" name="password">
+</form>
+
+{% with messages= get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{messages}}</p>
+    {% endfor %}
+  {% endif %}
+
+</html>

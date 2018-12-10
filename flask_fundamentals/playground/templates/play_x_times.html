@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <title>Playground</title>
+  <style>
+    .title {
+      width: 60%;
+      margin-top: 5%;
+      margin-left: 20%;
+    }
+
+    h1 {
+      margin-left: 40%;
+    }
+
+    .boxes {
+      background-color: #A0C6F6;
+      border: 3px solid black;
+      min-height: 250px;
+      width: 25%;
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 5.5%;
+      margin-top: 1%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="title">
+    <h1>Welcome!</h1>
+  </div>
+  {% for x in range(0,times): %}
+  <div class="boxes"></div>
+  {% endfor %}
+</body>
+
+</html>

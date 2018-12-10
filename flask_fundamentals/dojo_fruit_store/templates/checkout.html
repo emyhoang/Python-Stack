@@ -1,0 +1,48 @@
+<html>
+
+<head>
+  <title>Dojo Fruit Store Check Out</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Thank you for your order!</h1>
+
+    <p>
+      We ordered {{ total_quantity }} items for you and charged your student account on {{ current_time }}
+    </p>
+
+    <h4>You've ordered</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fruit Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for fruit in fruits %}
+        <tr>
+          <td>
+            {{ fruit }}
+          </td>
+          <td>
+            {{ form_data[fruit] }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h5 id="your_info">Your Information</h5>
+    Name: {{ form_data["student_name"] }}
+    <br>
+    Student ID: {{ form_data["student_id"] }}
+  </div>
+</body>
+
+</html>

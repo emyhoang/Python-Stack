@@ -1,0 +1,127 @@
+<html>
+
+<head>
+  <title>Travels Home</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-4'>
+        <h2>Welcome, {{ session['user']['first_name'] }}!</h2>
+      </div>
+      <div class='col-md-8 text-right'>
+        <a href='/travels/new'>Add Travel</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+    <br>
+
+    <h5>Your Trip Schedules </h5>
+    <table class="table">
+      <thead>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Plan</th>
+        <th>Action</th>
+      <tbody>
+        {% for my_trip in my_trips %}
+        <tr>
+          <td>
+            <a href="/travels/{{my_trip['id']}}">{{ my_trip['destination_name']}} </a>
+          </td>
+          <td>
+            {{ my_trip['start_date'] }}
+          </td>
+          <td>
+            {{ my_trip['end_date'] }}
+          </td>
+          <td>
+            {{my_trip['plan'] }}
+          </td>
+          {% if my_trip['user_id'] == session['user']['id'] %}
+          <td>
+            <form action="/delete/{{ my_trip['id'] }}" method='POST'>
+              <input type="hidden" name="_method" value="DELETE" />
+              <input type="hidden" name="trip_id" value="{{ my_trip['id'] }}" />
+              <input type="submit" value="Delete" />
+
+            </form>
+            <a href="/travels/{{ my_trip['id'] }}/edit">Edit</a>
+
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+
+
+        <!-- {% for my_joined_trip in my_joined_trips %}
+        <tr>
+          <td>
+            <a href="/travels/{{my_joined_trip['id']}}">{{ my_joined_trip['destination_name']}} </a>
+          </td>
+          <td>
+            {{ my_joined_trip['start_date']}}
+          </td>
+          <td>
+            {{ my_joined_trip['end_date'] }}
+          </td>
+          <td>
+            {{my_joined_trip['plan'] }}
+          </td>
+          <td>
+            <form action="/users_trips/{{my_joined_trip['id']}}" method='POST'>
+              <input type="hidden" name="_method" value="DELETE" />
+              <input type="submit" value="Cancel Trip" />
+            </form>
+          </td>
+        </tr>
+        {% endfor %} -->
+
+      </tbody>
+      </thead>
+    </table>
+
+    <br>
+
+    <h5>Other User's Travel Plans </h5>
+    <table class="table">
+      <thead>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Do You Want to Join</th>
+      </thead>
+      <tbody>
+        {% for other_trip in other_trips %}
+        <tr>
+          <td>
+            <a href="/travels/{{other_trip['id']}}">{{ other_trip['destination_name']}}</a>
+          </td>
+          <td>
+            {{ other_trip['start_date']}}
+          </td>
+          <td>
+            {{ other_trip['end_date']}}
+          </td>
+          <td>
+            <form action="/users_trips" method='post'>
+              <input type='hidden' name='trip_id' value="{{ other_trip['id'] }}" />
+              <input type='submit' value='join' />
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+</body>
+
+</html>

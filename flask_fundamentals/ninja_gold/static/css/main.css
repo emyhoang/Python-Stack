@@ -1,0 +1,16 @@
+.form_box{
+  display:inline-block;
+  vertical-align: top;
+  min-height: 150px;
+  width: 150px;
+  border: 1px solid black;
+  margin-left: 20px;
+}
+
+.green{
+  color: green;
+}
+
+.red{
+  color: red
+}

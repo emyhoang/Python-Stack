@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <title>Books Home</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-2'>
+        <h5>Welcome, {{ session['user']['first_name'] }}!</h5>
+      </div>
+      <div class='col-md-10 text-right'>
+        <a href='/books/new'>Add Book and Review</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <h6>Recent Book Reviews:</h6>
+        {% for review in reviews %}
+        <a href="/books/{{review['book_id']}}">{{ review['book_title'] }}</a>
+        <br>
+        Rating: {{ review['rating'] }}
+        <br>
+        {% for reviewer_name in reviewer_names %}
+        <a href="/users/{{ reviewer_names['id'] }}">{% endfor %} {{ reviewer_names['reviewer_name'] }}</a>
+        says: {{ review['content'] }}
+
+
+        <br>
+        Posted on {{ review['created_at'] }}
+        <hr>
+        {% endfor %}
+      </div>
+      <div class='col-md-6'>
+        <h5>Other Books with Reviews </h5>
+        <br>
+
+        <div style="border : solid 2px black; background : light-gray; color : black; width : 400px; height : 50px; overflow : auto; ">
+          {% for book_with_review in books_with_reviews %}
+
+          <a href="/books/{{book_with_review['book_id']}}">{{ book_with_review['title'] }}</a><br>
+
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

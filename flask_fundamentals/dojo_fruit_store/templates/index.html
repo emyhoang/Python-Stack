@@ -1,0 +1,78 @@
+<html>
+
+<head>
+  <title>Dojo Fruit Store</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Dojo Fruit Store!</h1>
+    <div class="row">
+      <div class="col-md-10">
+        <form action="/checkout" method="POST">
+          <h4 id="what_to_buy">What would you like to buy?</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Fruit Name</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for fruit in fruits %}
+              <tr>
+                <td>
+                  {{ fruit }}
+                </td>
+                <td>
+                  <select name="{{fruit}}">
+                    <option value='0'>0</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                  </select>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <br>
+          <h5 id="your_info">What would you like to buy?</h5>
+
+          <div class="form-group">
+            <label for="student_name">Name:</label>
+            <input id="student_name" type="text" name="student_name" placeholder="Your Name..." class="form-control" />
+          </div>
+
+          <div class="form-group">
+            <label for="student_id">Your Student ID:</label>
+            <input id="student_id" type="text" name="student_id" placeholder="Your Student ID..." class="form-control" />
+          </div>
+
+          <button type="submit" class="btn btn-success">Buy me stuff!</button>
+        </form>
+      </div>
+      <div class="col-md-2">
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            Welcome to Dojo Fruit Store
+            <p class="lead">
+              Your dojo decided to buy fruits for all the students! Please use this app to tell us what you would like
+              to have! Once we get your order, we'll charge your student account automatically.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>

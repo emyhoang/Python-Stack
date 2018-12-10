@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <title>Show Book and Review</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-10 text-right'>
+        <a href="/books">Home</a>
+        <a href="/logout">Logout</a>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <h3>Title: {{ book['title'] }}</h3>
+          <div>Author: {{ book['author'] }} </div>
+          <br>
+          <div>
+            Reviews:
+            <hr>
+            {% for review in reviews %}
+            Rating:{{review['rating']}}
+            <br>
+            {{review['reviewer_name'] }} says : {{review['content']}}
+            <br>
+            Posted on {{review['created_at']}}
+            <br>
+            {% if review['user_id'] == session['user']['id'] %}
+            <div class='row'>
+              <div class='col-md-11 text-right'>
+                <form action="/reviews/{{review['id']}}" method='POST'>
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <input type="hidden" name="book_id" value="{{ review['book_id'] }}" />
+                  <input type="submit" value="Delete Review" />
+                </form>
+              </div>
+            </div>
+            {% endif%}
+            <hr>
+            {% endfor %}
+
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <form action='/reviews' method='post'>
+            Add Review: <br>
+            <textarea name='content'></textarea><br>
+            Rating: <select name="rating">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select><br>
+            <input type="hidden" name="book_id" value="{{ book['id'] }}" />
+            <input type='submit' value='submit review'>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>

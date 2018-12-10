@@ -1,0 +1,6 @@
+.guess_result {
+  width: 250px;
+  min-height: 250;
+  border: solid;
+  background-color: red;
+}

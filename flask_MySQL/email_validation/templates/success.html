@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Email Successful</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="alert alert-success">
+    <p>The email address you entered ({{ last_email['email'] }}) is a VALID email address! Thank you!</address></p>
+  </div>
+  <div class="container">
+    <h1>Email Address Entered:</h1>
+    <br>
+    <ul>
+      {%for item in emails%}
+      <li>{{item['email']}} - {{item['created_at']}}</li>
+      {% endfor %}
+    </ul>
+
+
+
+  </div>
+</body>
+
+</html>

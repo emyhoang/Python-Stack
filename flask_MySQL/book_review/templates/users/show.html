@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <title>User Reviews</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-10 text-right'>
+        <a href="/books">Home</a>
+        <a href="/books/new">Add Book and Review</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <div>
+      <h3>User Alias: {{ users['first_name'] }}</h3>
+      <p>Name: {{ users['first_name'] }} {{ users['last_name'] }}</p>
+      <p>Email: {{ users['email'] }}</p>
+      <p>Total Review: {{ users['total_reviews']}}</p>
+    </div>
+
+
+    <div>
+      <h4>Posted Reviews on the following books</h4>
+      {% for user_book in user_books %}
+      <a href='#'>{{ user_books['title'] }}</a>
+      <br>
+      {% endfor %}
+    </div>
+  </div>
+
+</body>
+
+</html>

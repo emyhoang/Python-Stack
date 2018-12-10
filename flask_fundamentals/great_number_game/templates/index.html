@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <title>Greater Number Game</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome to the Great Number Game!</h1>
+    <p>I am thinking of a number between 1 and 100!</p>
+    <p>Take a guess!</p>
+    <div class="guess_result">
+      <h4>{{ answer }}</h4>
+    </div>
+    <br><br>
+    <form action="/guess" , method='POST'>
+      <input type='number' name='guess'>
+      <br><br>
+      <input type='submit' value='Submit'>
+    </form>
+
+  </div>
+</body>
+
+</html>

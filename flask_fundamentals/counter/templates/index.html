@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <title>Counter</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <h1>Counter</h1>
+  {{count}} times.
+
+  <form action="/plus_two">
+    <button type="submit">+2</button>
+  </form>
+
+  <form action="/destroy_session">
+    <button type="submit" class="btn btn-primary">Reset</button>
+  </form>
+  <form action="/print_hundred">
+    <button type="submit" class="btn btn-primary">Set Count to 100</button>
+  </form>
+
+  <form action="/magic_number" method='POST'>
+    Pick a number: <input type="number" name="number">
+    <button type="submit">magic number</button>
+  </form>
+
+</body>
+
+</html>

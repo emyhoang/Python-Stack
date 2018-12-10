@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>View Trip</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class='container'>
+    <br><br>
+    <div class='row'>
+      <div class='col-md-4'>
+        <h2> Trip</h2>
+      </div>
+      <div class='col-md-8 text-right'>
+        <a href='/travels'>Back</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+    <h4>{{trips['destination_name']}}</h4>
+    <p>Planned by: {{trips['first_name']}} {{trips['last_name']}}</p>
+    <p>Description:{{ trips['plan'] }}</p>
+    <p>Start date:{{ trips['start_date'] }}</p>
+    <p>End date:{{ trips['end_date'] }}</p>
+    <br>
+    <h4>Other Users Joing the Trip</h4>
+    <ul>
+      {% for trip_member in trip_members %}
+      <li>
+        {{ trip_member['first_name'] }} {{ trip_member['last_name'] }}
+      </li>
+      {% endfor %}
+    </ul>
+
+
+  </div>
+</body>
+
+</html>

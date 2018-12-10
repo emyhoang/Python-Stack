@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <title>Add A Trip</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  {% with messages= get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+
+  {% for category, message in messages %}
+  {% if(category == 'error') %}
+  <div class="alert alert-danger">
+    <p>{{message}}</p>
+  </div>
+  {% else %}
+  <div class="alert alert-success">
+    <p>{{message}}</p>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <div class='container'>
+    <br><br>
+    <div class='row'>
+      <div class='col-md-4'>
+        <h4>Add a Trip</h4>
+      </div>
+      <div class='col-md-8 text-right'>
+        <a href='/travels'>Back</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+
+    <form action='/travels' method='post'>
+      <div class="form-group">
+        <label for="destination">Destination:</label>
+        <input type='text' name='destination_name' class="form-control" id="name">
+      </div>
+      <div class="form-group">
+        <label for="Description:">Description:</label>
+        <textarea name='plan' class="form-control" id="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="Travel Date From:">Travel Date From:</label>
+        <input type='date' name='start_date' class="form-control" id="travel date from: ">
+      </div>
+      <div class="form-group">
+        <label for="Travel Date To:">Travel Date To:</label>
+        <input type='date' name='end_date' class="form-control" id="travel date to: ">
+      </div>
+      <input type='submit' value='Add Trip'>
+    </form>
+
+
+  </div>
+</body>
+
+</html>

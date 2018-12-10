@@ -1,0 +1,62 @@
+<html>
+
+<head>
+  <title>New Job</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  {% with messages= get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+
+  {% for category, message in messages %}
+  {% if(category == 'error') %}
+  <div class="alert alert-danger">
+    <p>{{message}}</p>
+  </div>
+  {% else %}
+  <div class="alert alert-success">
+    <p>{{message}}</p>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <div class='container'>
+    <br><br>
+    <div class='row'>
+      <div class='col-md-4'>
+        <h4>Hello, {{ session['user']['first_name'] }}! Create A Job!</h4>
+      </div>
+      <div class='col-md-8 text-right'>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+
+
+    <form action='/dashboard' method='post'>
+      <div class="form-group">
+        <label for="title">title:</label>
+        <input type='text' name='job' class="form-control" id="job">
+      </div>
+      <div class="form-group">
+        <label for="Description">Description:</label>
+        <input type='text' name='description' class="form-control" id="description ">
+      </div>
+      <div class="form-group">
+        <label for="location">location</label>
+        <input type='text' name='location' class="form-control" id="location">
+      </div>
+      <a href='/dashboard'>Cancel</a>
+      <input type='submit' value='Submit'>
+    </form>
+
+
+  </div>
+</body>
+
+</html>

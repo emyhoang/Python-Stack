@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <title>Dojo Survey Index</title>
+</head>
+
+<body>
+  {% with messages= get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+
+  {% for category, message in messages %}
+  {% if(category == 'error') %}
+  <div class="alert alert-danger">
+    <p>{{message}}</p>
+  </div>
+  {% else %}
+  <div class="alert alert-success">
+    <p>{{message}}</p>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <div class='container' style='border: 1px solid black; margin-top: 50px;'>
+    <br>
+    <form action='/result' method='post'>
+      Your Name: <input type='text' name='name'>
+      <br><br>
+      Dojo Location:
+      <select name='location'>
+        {% for location in locations %}
+        <option value="{{ location }}">{{ location }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      Favorite Language:
+      <select name='language'>
+        {% for language in languages %}
+        <option value="{{ language }}">{{ language }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      Comment (optional):
+      <br><br>
+      <textarea name='comment' rows="10" cols="50"></textarea>
+      <br><br>
+      <input type='submit' value='Submit'>
+    </form>
+  </div>
+
+</body>
+
+</html>

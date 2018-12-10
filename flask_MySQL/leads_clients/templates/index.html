@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Leads and Clients</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		window.onload = function () {
+
+			var options = {
+				title: {
+					text: "Customers and number of new leads"
+				},
+				subtitles: [{
+					text: "As of November, 2017"
+				}],
+				animationEnabled: true,
+				data: [{
+					type: "pie",
+					startAngle: 40,
+					toolTipContent: "<b>{label}</b>: {y}%",
+					showInLegend: "true",
+					legendText: "{label}",
+					indexLabelFontSize: 16,
+					indexLabel: "{label} - {y}%",
+					dataPoints: [
+						{ y: 7, label: "Ryan Owen" },
+						{ y: 7, label: "Masaki Fujimoto" },
+						{ y: 4, label: "Michael Choi" },
+						{ y: 3, label: "Joe Smith" },
+					]
+				}]
+			};
+			$("#chartContainer").CanvasJSChart(options);
+
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<h3>List of all custers and # of leads</h3>
+		<br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Customer Name</th>
+					<th>Number of Leads</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for customer in customers %}
+				<tr>
+					<td>
+						{{customer['first_name']}} {{customer['last_name']}}
+					</td>
+					{% for lead in leads %}
+					<td>
+						{{ lead}}
+					</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+		<br>
+		<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+		<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+		<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+	</div>
+</body>
+
+</html>

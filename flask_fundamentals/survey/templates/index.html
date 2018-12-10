@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Coding Dojo Survey</title>
+</head>
+
+<body>
+  <div style='border: 1px solid black'>
+    <form action='/result' method='post'>
+      Your Name: <input type='text' name='name'>
+      <br><br>
+      Dojo Location:
+      <select name='location'>
+        {% for location in locations %}
+        <option value="{{ location }}">{{ location }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      Favorite Language:
+      <select name='language'>
+        {% for language in languages %}
+        <option value="{{ language }}">{{ language }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+      Comment (optional):
+      <br><br>
+      <textarea name='comment' rows="10" cols="50"></textarea>
+      <br><br>
+      <input type='submit' value='Submit'>
+    </form>
+  </div>
+
+</body>
+
+</html>

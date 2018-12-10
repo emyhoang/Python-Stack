@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <title>Handy Helper Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-4'>
+        <h3>Hello, {{ session['user']['first_name'] }}!</h3>
+      </div>
+      <div class='col-md-8 text-right'>
+        <a href="/logout">Logout</a>
+        <a href='/jobs/new'>New Job!</a>
+      </div>
+    </div>
+    <br>
+    <h5>Everyone's jobs:</h5>
+    <table class="table">
+      <thead>
+        <th>Job</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        {% for job in jobs %}
+        <tr>
+          <td>
+            {{ job['job'] }}
+          </td>
+          <td>
+            {{ job['location'] }}
+          </td>
+          <td>
+            <a href="/jobs/{{ job['id'] }}">View</a>
+            {% if job['user_id'] == session['user']['id'] %}
+            <form action="/delete/{{ job['id'] }}" method='POST'>
+              <input type="hidden" name="_method" value="DELETE" />
+              <input type="hidden" name="job_id" value="{{ job['id'] }}" />
+              <input type="submit" value="Delete" />
+            </form>
+            <a href="/jobs/{{ job['id'] }}/edit">Edit</a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+
+
+  </div>
+</body>
+
+</html>

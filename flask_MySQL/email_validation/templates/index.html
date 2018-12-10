@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Email Validation</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  {% with messages= get_flashed_messages() %}
+  {% if messages %}
+  <div class="alert alert-danger">
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  <div class="container">
+    <h1>Email Validation with DB</h1>
+    <br>
+    <form action='/check_and_save' method='Post'>
+      Email address: <input type="text" name="email">
+      <br><br>
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>
